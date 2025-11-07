@@ -37,7 +37,7 @@ public class BlockInterract {
 
         String interractItem = event.getItemStack().getItem().toString();
 
-        System.out.println("=== Block Place Event ===");
+        System.out.println("=== Block Interract Event ===");
         System.out.println(dateTime);
         System.out.println(dimension);
         System.out.println(playerName);
@@ -46,6 +46,6 @@ public class BlockInterract {
         System.out.println(blockPos);
         System.out.println(blockType);
         System.out.println(interractItem);
-        System.out.println("=========================");
+        System.out.println("=============================");
     }
 }
