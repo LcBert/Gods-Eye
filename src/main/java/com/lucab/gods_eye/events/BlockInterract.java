@@ -18,7 +18,7 @@ public class BlockInterract {
 
         String dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss:SSSS"));
 
-        String dimension = event.getLevel().dimensionType().toString();
+        String dimension = event.getEntity().level().dimension().location().toString();
 
         String playerPos = String.format("%.2f/%.2f/%.2f",
                 event.getEntity().getX(),

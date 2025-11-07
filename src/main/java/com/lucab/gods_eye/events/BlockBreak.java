@@ -18,7 +18,7 @@ public class BlockBreak {
 
         String dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss:SSSS"));
 
-        String dimension = event.getLevel().dimensionType().toString();
+        String dimension = event.getPlayer().level().dimension().location().toString();
 
         String playerPos = String.format("%.2f/%.2f/%.2f",
                 event.getPlayer().getX(),
