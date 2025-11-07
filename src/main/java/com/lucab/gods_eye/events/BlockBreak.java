@@ -14,9 +14,6 @@ import net.neoforged.neoforge.event.level.BlockEvent;
 public class BlockBreak {
     @SubscribeEvent
     public static void blockBreak(BlockEvent.BreakEvent event) {
-        if (event.getLevel().isClientSide())
-            return;
-
         String dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss:SSSS"));
 
         String dimension = event.getPlayer().level().dimension().location().toString();

@@ -14,9 +14,6 @@ import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
 public class AttackEntity {
     @SubscribeEvent
     public static void onPlayerKill(AttackEntityEvent event) {
-        if (event.getEntity().level().isClientSide())
-            return;
-
         String dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss:SSSS"));
 
         String dimension = event.getEntity().level().dimension().location().toString();

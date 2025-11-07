@@ -14,9 +14,6 @@ import net.neoforged.neoforge.event.entity.item.ItemTossEvent;
 public class ItemDrop {
     @SubscribeEvent
     public static void onItemDrop(ItemTossEvent event) {
-        if (event.getPlayer().level().isClientSide())
-            return;
-
         String dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss:SSSS"));
 
         String dimension = event.getPlayer().level().dimension().location().toString();

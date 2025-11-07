@@ -32,5 +32,4 @@ public class SendChat {
         System.out.println(playerPos);
         System.out.println("===================");
     }
-
 }
