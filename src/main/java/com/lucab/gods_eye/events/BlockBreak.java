@@ -30,9 +30,9 @@ public class BlockBreak {
                 String.format("%.2f", event.getPlayer().getRotationVector().y));
 
         List<String> blockPos = List.of(
-                String.format("%.2f", (double) event.getPos().getX()),
-                String.format("%.2f", (double) event.getPos().getY()),
-                String.format("%.2f", (double) event.getPos().getZ()));
+                String.format("%d", event.getPos().getX()),
+                String.format("%d", event.getPos().getY()),
+                String.format("%d", event.getPos().getZ()));
 
         String block = event.getState().getBlock().getDescriptionId();
 

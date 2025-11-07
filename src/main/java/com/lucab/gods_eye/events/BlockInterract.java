@@ -30,9 +30,9 @@ public class BlockInterract {
                 String.format("%.2f", event.getEntity().getRotationVector().y));
 
         List<String> blockPos = List.of(
-                String.format("%.2f", (double) event.getPos().getX()),
-                String.format("%.2f", (double) event.getPos().getY()),
-                String.format("%.2f", (double) event.getPos().getZ()));
+                String.format("%d", event.getPos().getX()),
+                String.format("%d", event.getPos().getY()),
+                String.format("%d", event.getPos().getZ()));
 
         String block = event.getLevel().getBlockState(event.getPos()).getBlock().getDescriptionId();
 
