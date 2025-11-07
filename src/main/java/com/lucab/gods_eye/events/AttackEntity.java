@@ -1,5 +1,8 @@
 package com.lucab.gods_eye.events;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import com.lucab.gods_eye.Utils;
 
 import net.neoforged.bus.api.SubscribeEvent;
@@ -12,6 +15,8 @@ public class AttackEntity {
     public static void onPlayerKill(AttackEntityEvent event) {
         if (event.getEntity().level().isClientSide())
             return;
+
+        String dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss:SSSS"));
 
         String dimension = event.getEntity().level().dimensionType().toString();
 
@@ -32,6 +37,7 @@ public class AttackEntity {
                 event.getTarget().getZ());
 
         System.out.println("=== Attack Entity Event ===");
+        System.out.println(dateTime);
         System.out.println(dimension);
         System.out.println(playerPos);
         System.out.println(playerRotation);

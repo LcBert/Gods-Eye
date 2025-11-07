@@ -1,5 +1,8 @@
 package com.lucab.gods_eye.events;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import com.lucab.gods_eye.Utils;
 
 import net.neoforged.bus.api.SubscribeEvent;
@@ -12,6 +15,8 @@ public class BlockBreak {
     public static void blockBreak(BlockEvent.BreakEvent event) {
         if (event.getLevel().isClientSide())
             return;
+
+        String dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss:SSSS"));
 
         String dimension = event.getLevel().dimensionType().toString();
 
@@ -29,6 +34,7 @@ public class BlockBreak {
         String blockType = event.getState().getBlock().toString();
 
         System.out.println("=== Block Break Event ===");
+        System.out.println(dateTime);
         System.out.println(dimension);
         System.out.println(playerPos);
         System.out.println(playerRotation);
