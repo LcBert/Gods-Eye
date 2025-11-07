@@ -20,6 +20,8 @@ public class BlockBreak {
 
         String dimension = event.getPlayer().level().dimension().location().toString();
 
+        String playerName = event.getPlayer().getName().getString();
+
         String playerPos = String.format("%.2f/%.2f/%.2f",
                 event.getPlayer().getX(),
                 event.getPlayer().getY(),
@@ -36,6 +38,7 @@ public class BlockBreak {
         System.out.println("=== Block Break Event ===");
         System.out.println(dateTime);
         System.out.println(dimension);
+        System.out.println(playerName);
         System.out.println(playerPos);
         System.out.println(playerRotation);
         System.out.println(blockPos);

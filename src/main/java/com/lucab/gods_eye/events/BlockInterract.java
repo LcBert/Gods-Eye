@@ -20,6 +20,8 @@ public class BlockInterract {
 
         String dimension = event.getEntity().level().dimension().location().toString();
 
+        String playerName = event.getEntity().getName().getString();
+
         String playerPos = String.format("%.2f/%.2f/%.2f",
                 event.getEntity().getX(),
                 event.getEntity().getY(),
@@ -38,6 +40,7 @@ public class BlockInterract {
         System.out.println("=== Block Place Event ===");
         System.out.println(dateTime);
         System.out.println(dimension);
+        System.out.println(playerName);
         System.out.println(playerPos);
         System.out.println(playerRotation);
         System.out.println(blockPos);
