@@ -2,6 +2,7 @@ package com.lucab.gods_eye.events;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import com.lucab.gods_eye.Utils;
 
@@ -22,21 +23,21 @@ public class AttackEntity {
 
         String playerName = event.getEntity().getName().getString();
 
-        String playerPos = String.format("%.2f/%.2f/%.2f",
-                event.getEntity().getX(),
-                event.getEntity().getY(),
-                event.getEntity().getZ());
+        List<String> playerPos = List.of(
+                String.format("%.2f", event.getEntity().getX()),
+                String.format("%.2f", event.getEntity().getY()),
+                String.format("%.2f", event.getEntity().getZ()));
 
-        String playerRotation = String.format("%s,%s",
-                String.valueOf(event.getEntity().getRotationVector().x),
-                String.valueOf(event.getEntity().getRotationVector().y));
+        List<String> playerRotation = List.of(
+                String.format("%.2f", event.getEntity().getRotationVector().x),
+                String.format("%.2f", event.getEntity().getRotationVector().y));
 
         String entityType = event.getTarget().getType().toString();
 
-        String entityPos = String.format("%.2f/%.2f/%.2f",
-                event.getTarget().getX(),
-                event.getTarget().getY(),
-                event.getTarget().getZ());
+        List<String> entityPos = List.of(
+                String.format("%.2f", event.getTarget().getX()),
+                String.format("%.2f", event.getTarget().getY()),
+                String.format("%.2f", event.getTarget().getZ()));
 
         System.out.println("=== Attack Entity Event ===");
         System.out.println(dateTime);

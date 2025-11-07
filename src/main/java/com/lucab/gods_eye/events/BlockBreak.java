@@ -2,6 +2,7 @@ package com.lucab.gods_eye.events;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import com.lucab.gods_eye.Utils;
 
@@ -22,16 +23,19 @@ public class BlockBreak {
 
         String playerName = event.getPlayer().getName().getString();
 
-        String playerPos = String.format("%.2f/%.2f/%.2f",
-                event.getPlayer().getX(),
-                event.getPlayer().getY(),
-                event.getPlayer().getZ());
+        List<String> playerPos = List.of(
+                String.format("%.2f", event.getPlayer().getX()),
+                String.format("%.2f", event.getPlayer().getY()),
+                String.format("%.2f", event.getPlayer().getZ()));
 
-        String playerRotation = String.format("%s,%s",
-                String.valueOf(event.getPlayer().getRotationVector().x),
-                String.valueOf(event.getPlayer().getRotationVector().y));
+        List<String> playerRotation = List.of(
+                String.format("%.2f", event.getPlayer().getRotationVector().x),
+                String.format("%.2f", event.getPlayer().getRotationVector().y));
 
-        String blockPos = event.getPos().toString();
+        List<String> blockPos = List.of(
+                String.format("%.2f", (double) event.getPos().getX()),
+                String.format("%.2f", (double) event.getPos().getY()),
+                String.format("%.2f", (double) event.getPos().getZ()));
 
         String blockType = event.getState().getBlock().toString();
 

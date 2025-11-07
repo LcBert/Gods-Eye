@@ -2,6 +2,7 @@ package com.lucab.gods_eye.events;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import com.lucab.gods_eye.Utils;
 
@@ -22,16 +23,19 @@ public class BlockPlace {
 
         String playerName = event.getEntity().getName().getString();
 
-        String playerPos = String.format("%.2f/%.2f/%.2f",
-                event.getEntity().getX(),
-                event.getEntity().getY(),
-                event.getEntity().getZ());
+        List<String> playerPos = List.of(
+                String.format("%.2f", event.getEntity().getX()),
+                String.format("%.2f", event.getEntity().getY()),
+                String.format("%.2f", event.getEntity().getZ()));
 
-        String playerRotation = String.format("%s,%s",
+        List<String> playerRotation = List.of(
                 String.valueOf(event.getEntity().getRotationVector().x),
                 String.valueOf(event.getEntity().getRotationVector().y));
 
-        String blockPos = event.getPos().toString();
+        List<String> blockPos = List.of(
+                String.format("%.2f", (double) event.getPos().getX()),
+                String.format("%.2f", (double) event.getPos().getY()),
+                String.format("%.2f", (double) event.getPos().getZ()));
 
         String blockType = event.getState().getBlock().toString();
 

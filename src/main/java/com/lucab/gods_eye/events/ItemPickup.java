@@ -2,6 +2,7 @@ package com.lucab.gods_eye.events;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import com.lucab.gods_eye.Utils;
 
@@ -22,21 +23,21 @@ public class ItemPickup {
 
         String playerName = event.getPlayer().getName().getString();
 
-        String playerPos = String.format("%.2f/%.2f/%.2f",
-                event.getPlayer().getX(),
-                event.getPlayer().getY(),
-                event.getPlayer().getZ());
+        List<String> playerPos = List.of(
+                String.format("%.2f", event.getPlayer().getX()),
+                String.format("%.2f", event.getPlayer().getY()),
+                String.format("%.2f", event.getPlayer().getZ()));
 
-        String playerRotation = String.format("%s,%s",
-                String.valueOf(event.getPlayer().getRotationVector().x),
-                String.valueOf(event.getPlayer().getRotationVector().y));
+        List<String> playerRotation = List.of(
+                String.format("%.2f", event.getPlayer().getRotationVector().x),
+                String.format("%.2f", event.getPlayer().getRotationVector().y));
 
         String itemType = event.getOriginalStack().getItem().toString();
 
-        String itemPos = String.format("%.2f/%.2f/%.2f",
-                event.getItemEntity().getX(),
-                event.getItemEntity().getY(),
-                event.getItemEntity().getZ());
+        List<String> itemPos = List.of(
+                String.format("%.2f", event.getItemEntity().getX()),
+                String.format("%.2f", event.getItemEntity().getY()),
+                String.format("%.2f", event.getItemEntity().getZ()));
 
         System.out.println("=== Item Pickup Event ===");
         System.out.println(dateTime);
