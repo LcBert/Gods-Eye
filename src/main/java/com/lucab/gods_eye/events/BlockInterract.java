@@ -37,7 +37,7 @@ public class BlockInterract {
                 String.format("%.2f", (double) event.getPos().getY()),
                 String.format("%.2f", (double) event.getPos().getZ()));
 
-        String blockType = event.getLevel().getBlockState(event.getPos()).getBlock().toString();
+        String block = event.getLevel().getBlockState(event.getPos()).getBlock().getDescriptionId();
 
         String interractItem = event.getItemStack().getItem().toString();
 
@@ -48,7 +48,7 @@ public class BlockInterract {
         System.out.println(playerPos);
         System.out.println(playerRotation);
         System.out.println(blockPos);
-        System.out.println(blockType);
+        System.out.println(block);
         System.out.println(interractItem);
         System.out.println("=============================");
     }

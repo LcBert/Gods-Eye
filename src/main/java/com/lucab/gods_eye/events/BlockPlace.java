@@ -37,7 +37,7 @@ public class BlockPlace {
                 String.format("%.2f", (double) event.getPos().getY()),
                 String.format("%.2f", (double) event.getPos().getZ()));
 
-        String blockType = event.getState().getBlock().toString();
+        String block = event.getState().getBlock().getDescriptionId();
 
         System.out.println("=== Block Place Event ===");
         System.out.println(dateTime);
@@ -46,7 +46,7 @@ public class BlockPlace {
         System.out.println(playerPos);
         System.out.println(playerRotation);
         System.out.println(blockPos);
-        System.out.println(blockType);
+        System.out.println(block);
         System.out.println("=========================");
     }
 }
