@@ -14,6 +14,9 @@ import net.neoforged.neoforge.event.level.BlockEvent;
 public class BlockPlace {
     @SubscribeEvent
     public static void blockPlaced(BlockEvent.EntityPlaceEvent event) {
+        if (event.getLevel().isClientSide())
+            return;
+
         String dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss:SSSS"));
 
         String dimension = event.getEntity().level().dimension().location().toString();

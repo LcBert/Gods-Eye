@@ -14,6 +14,9 @@ import net.neoforged.neoforge.event.entity.player.ItemEntityPickupEvent;
 public class ItemPickup {
     @SubscribeEvent
     public static void onItemPickup(ItemEntityPickupEvent.Post event) {
+        if (event.getPlayer().level().isClientSide())
+            return;
+
         String dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss:SSSS"));
 
         String dimension = event.getPlayer().level().dimension().location().toString();

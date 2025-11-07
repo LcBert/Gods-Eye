@@ -14,6 +14,8 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent.PlayerLoggedOutEve
 public class PlayerLoggedOut {
     @SubscribeEvent
     public static void onPlayerLogin(PlayerLoggedOutEvent event) {
+        if (event.getEntity().level().isClientSide())
+            return;
 
         String dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss:SSSS"));
 

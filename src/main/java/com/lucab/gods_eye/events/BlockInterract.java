@@ -14,6 +14,9 @@ import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 public class BlockInterract {
     @SubscribeEvent
     public static void blockPlaced(PlayerInteractEvent.RightClickBlock event) {
+        if (event.getLevel().isClientSide())
+            return;
+
         String dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss:SSSS"));
 
         String dimension = event.getEntity().level().dimension().location().toString();

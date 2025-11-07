@@ -14,6 +14,8 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent.PlayerLoggedInEven
 public class PlayerLoggedIn {
     @SubscribeEvent
     public static void onPlayerLogin(PlayerLoggedInEvent event) {
+        if (event.getEntity().level().isClientSide())
+            return;
 
         String dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss:SSSS"));
 

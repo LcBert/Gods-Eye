@@ -14,6 +14,9 @@ import net.neoforged.neoforge.event.ServerChatEvent;
 public class SendChat {
     @SubscribeEvent
     public static void sendChat(ServerChatEvent event) {
+        if (event.getPlayer().level().isClientSide())
+            return;
+
         String dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss:SSSS"));
 
         String message = event.getMessage().getString();
