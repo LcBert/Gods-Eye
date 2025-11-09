@@ -1,7 +1,5 @@
 package com.lucab.gods_eye.events;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import com.lucab.gods_eye.Utils;
@@ -17,39 +15,23 @@ public class BlockInterract {
         if (event.getLevel().isClientSide())
             return;
 
-        String dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss:SSSS"));
+        EventRecord record = new EventRecord("BlockInterract");
+        record.Dimension(event.getEntity().level().dimension().location().toString())
+                .PlayerName(event.getEntity().getName().getString())
+                .PlayerPos(List.of(
+                        String.format("%.2f", event.getEntity().getX()),
+                        String.format("%.2f", event.getEntity().getY()),
+                        String.format("%.2f", event.getEntity().getZ())))
+                .PlayerRotation(List.of(
+                        String.format("%.2f", event.getEntity().getRotationVector().x),
+                        String.format("%.2f", event.getEntity().getRotationVector().y)))
+                .BlockType(event.getLevel().getBlockState(event.getPos()).getBlock().getDescriptionId())
+                .BlockPos(List.of(
+                        String.format("%d", event.getPos().getX()),
+                        String.format("%d", event.getPos().getY()),
+                        String.format("%d", event.getPos().getZ())))
+                .InterractItem(event.getItemStack().getItem().toString());
 
-        String dimension = event.getEntity().level().dimension().location().toString();
-
-        String playerName = event.getEntity().getName().getString();
-
-        List<String> playerPos = List.of(
-                String.format("%.2f", event.getEntity().getX()),
-                String.format("%.2f", event.getEntity().getY()),
-                String.format("%.2f", event.getEntity().getZ()));
-
-        List<String> playerRotation = List.of(
-                String.format("%.2f", event.getEntity().getRotationVector().x),
-                String.format("%.2f", event.getEntity().getRotationVector().y));
-
-        List<String> blockPos = List.of(
-                String.format("%d", event.getPos().getX()),
-                String.format("%d", event.getPos().getY()),
-                String.format("%d", event.getPos().getZ()));
-
-        String block = event.getLevel().getBlockState(event.getPos()).getBlock().getDescriptionId();
-
-        String interractItem = event.getItemStack().getItem().toString();
-
-        System.out.println("=== Block Interract Event ===");
-        System.out.println(dateTime);
-        System.out.println(dimension);
-        System.out.println(playerName);
-        System.out.println(playerPos);
-        System.out.println(playerRotation);
-        System.out.println(blockPos);
-        System.out.println(block);
-        System.out.println(interractItem);
-        System.out.println("=============================");
+        System.out.println(record.toString());
     }
 }

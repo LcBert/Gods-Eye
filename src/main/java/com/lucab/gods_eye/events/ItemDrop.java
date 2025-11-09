@@ -1,7 +1,5 @@
 package com.lucab.gods_eye.events;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import com.lucab.gods_eye.Utils;
@@ -17,30 +15,18 @@ public class ItemDrop {
         if (event.getPlayer().level().isClientSide())
             return;
 
-        String dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss:SSSS"));
+        EventRecord record = new EventRecord("ItemDrop");
+        record.Dimension(event.getPlayer().level().dimension().location().toString())
+                .PlayerName(event.getPlayer().getName().getString())
+                .PlayerPos(List.of(
+                        String.format("%.2f", event.getPlayer().getX()),
+                        String.format("%.2f", event.getPlayer().getY()),
+                        String.format("%.2f", event.getPlayer().getZ())))
+                .PlayerRotation(List.of(
+                        String.format("%.2f", event.getPlayer().getRotationVector().x),
+                        String.format("%.2f", event.getPlayer().getRotationVector().y)))
+                .ItemType(event.getEntity().getItem().toString());
 
-        String dimension = event.getPlayer().level().dimension().location().toString();
-
-        String playerName = event.getPlayer().getName().getString();
-
-        List<String> playerPos = List.of(
-                String.format("%.2f", event.getPlayer().getX()),
-                String.format("%.2f", event.getPlayer().getY()),
-                String.format("%.2f", event.getPlayer().getZ()));
-
-        List<String> playerRotation = List.of(
-                String.format("%.2f", event.getPlayer().getRotationVector().x),
-                String.format("%.2f", event.getPlayer().getRotationVector().y));
-
-        String itemType = event.getEntity().getItem().toString();
-
-        System.out.println("=== Item Pickup Event ===");
-        System.out.println(dateTime);
-        System.out.println(dimension);
-        System.out.println(playerName);
-        System.out.println(playerPos);
-        System.out.println(playerRotation);
-        System.out.println(itemType);
-        System.out.println("=========================");
+        System.out.println(record.toString());
     }
 }

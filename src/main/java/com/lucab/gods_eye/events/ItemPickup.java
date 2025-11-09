@@ -1,7 +1,5 @@
 package com.lucab.gods_eye.events;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import com.lucab.gods_eye.Utils;
@@ -17,36 +15,25 @@ public class ItemPickup {
         if (event.getPlayer().level().isClientSide())
             return;
 
-        String dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss:SSSS"));
+        if (event.getPlayer().level().isClientSide())
+            return;
 
-        String dimension = event.getPlayer().level().dimension().location().toString();
+        EventRecord record = new EventRecord("ItemDrop");
+        record.Dimension(event.getPlayer().level().dimension().location().toString())
+                .PlayerName(event.getPlayer().getName().getString())
+                .PlayerPos(List.of(
+                        String.format("%.2f", event.getPlayer().getX()),
+                        String.format("%.2f", event.getPlayer().getY()),
+                        String.format("%.2f", event.getPlayer().getZ())))
+                .PlayerRotation(List.of(
+                        String.format("%.2f", event.getPlayer().getRotationVector().x),
+                        String.format("%.2f", event.getPlayer().getRotationVector().y)))
+                .ItemType(event.getOriginalStack().getItem().toString())
+                .ItemPos(List.of(
+                        String.format("%.2f", event.getItemEntity().getX()),
+                        String.format("%.2f", event.getItemEntity().getY()),
+                        String.format("%.2f", event.getItemEntity().getZ())));
 
-        String playerName = event.getPlayer().getName().getString();
-
-        List<String> playerPos = List.of(
-                String.format("%.2f", event.getPlayer().getX()),
-                String.format("%.2f", event.getPlayer().getY()),
-                String.format("%.2f", event.getPlayer().getZ()));
-
-        List<String> playerRotation = List.of(
-                String.format("%.2f", event.getPlayer().getRotationVector().x),
-                String.format("%.2f", event.getPlayer().getRotationVector().y));
-
-        String itemType = event.getOriginalStack().getItem().toString();
-
-        List<String> itemPos = List.of(
-                String.format("%.2f", event.getItemEntity().getX()),
-                String.format("%.2f", event.getItemEntity().getY()),
-                String.format("%.2f", event.getItemEntity().getZ()));
-
-        System.out.println("=== Item Pickup Event ===");
-        System.out.println(dateTime);
-        System.out.println(dimension);
-        System.out.println(playerName);
-        System.out.println(playerPos);
-        System.out.println(playerRotation);
-        System.out.println(itemType);
-        System.out.println(itemPos);
-        System.out.println("=========================");
+        System.out.println(record.toString());
     }
 }
